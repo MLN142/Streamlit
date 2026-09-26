@@ -1,0 +1,111 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Toggle Video</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            padding: 40px;
+        }
+
+        .video-container {
+            margin-bottom: 20px;
+        }
+
+        video {
+            width: 600px;
+            max-width: 100%;
+            border-radius: 10px;
+        }
+
+        /* Toggle switch */
+        .toggle-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .switch {
+            position: relative;
+            width: 50px;
+            height: 26px;
+        }
+
+        .switch input {
+            display: none;
+        }
+
+        .slider {
+            position: absolute;
+            inset: 0;
+            background-color: #ccc;
+            border-radius: 30px;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .slider::before {
+            content: "";
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            left: 3px;
+            top: 3px;
+            background-color: white;
+            border-radius: 50%;
+            transition: 0.3s;
+        }
+
+        input:checked + .slider {
+            background-color: #2196F3;
+        }
+
+        input:checked + .slider::before {
+            transform: translateX(24px);
+        }
+    </style>
+</head>
+
+<body>
+
+    <h1>Toggle Video</h1>
+
+    <!-- Video -->
+    <div class="video-container" id="videoContainer">
+        <video controls>
+            <source src="media/video.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+        </video>
+    </div>
+
+    <!-- Toggle BELOW the video -->
+    <div class="toggle-container">
+        <label class="switch">
+            <input type="checkbox" id="videoToggle" checked>
+            <span class="slider"></span>
+        </label>
+
+        <span>Play Video</span>
+    </div>
+
+    <script>
+        const toggle = document.getElementById("videoToggle");
+        const videoContainer = document.getElementById("videoContainer");
+
+        toggle.addEventListener("change", function () {
+            if (this.checked) {
+                videoContainer.style.display = "block";
+            } else {
+                videoContainer.style.display = "none";
+            }
+        });
+    </script>
+
+</body>
+</html>
